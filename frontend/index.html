@@ -253,41 +253,34 @@
     </footer>
 
     <script>
-        // Form Submission to Cloudflare Backend
-        document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const responseEl = document.getElementById('formResponse');
-            responseEl.style.color = "var(--primary)";
-            responseEl.innerText = "Submitting your booking request...";
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('patientName').value;
+        const phone = document.getElementById('patientPhone').value;
+        const date = document.getElementById('appointmentDate').value;
+        const msg = document.getElementById('patientMessage').value;
 
-            const bookingData = {
-                name: document.getElementById('patientName').value,
-                phone: document.getElementById('patientPhone').value,
-                date: document.getElementById('appointmentDate').value,
-                message: document.getElementById('patientMessage').value
-            };
+        // Aapka WhatsApp Number
+        const myPhone = "923439475130"; 
+        
+        // WhatsApp Message Text
+        const text = `*New Appointment Request (DMC)*%0A%0A` +
+                     `*Name:* ${encodeURIComponent(name)}%0A` +
+                     `*Patient Phone:* ${encodeURIComponent(phone)}%0A` +
+                     `*Date:* ${encodeURIComponent(date)}%0A` +
+                     `*Details:* ${encodeURIComponent(msg)}`;
 
-            try {
-                let res = await fetch('/api/book-appointment', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(bookingData)
-                });
-                let result = await res.json();
-                
-                if(result.success) {
-                    responseEl.style.color = "green";
-                    responseEl.innerText = "✓ " + result.message;
-                    document.getElementById('appointmentForm').reset();
-                } else {
-                    responseEl.style.color = "red";
-                    responseEl.innerText = "Error submitting appointment.";
-                }
-            } catch(err) {
-                responseEl.style.color = "green";
-                responseEl.innerText = "✓ Booking Request Sent Successfully! We will call you back.";
-            }
-        });
-    </script>
+        // Direct WhatsApp Open Karega
+        window.open(`https://wa.me/${myPhone}?text=${text}`, '_blank');
+        
+        // Screen Par Confirmation Message
+        const responseEl = document.getElementById('formResponse');
+        responseEl.style.color = "green";
+        responseEl.innerText = "✓ Redirecting to WhatsApp...";
+    });
+</script>
+
+         
 </body>
 </html>
