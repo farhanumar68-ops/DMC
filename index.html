@@ -1073,30 +1073,49 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+    // Sticky Header
+    const header = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 
-        // Mobile Nav Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+    });
 
-        menuToggle.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-        });
-
-        // Form Submit Simulation
-        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+    // Form Submission to WhatsApp
+    const appointmentForm = document.getElementById('appointmentForm');
+    if (appointmentForm) {
+        appointmentForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thank you for booking! Dr. Mustafa\'s Clinic staff will contact you shortly to confirm your slot.');
-            this.reset();
+
+            // Fetch input values
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('serviceSelect').value;
+            const date = document.getElementById('appointmentDate').value;
+
+            // Target Phone Number
+            const clinicWhatsApp = "923439475130";
+
+            // Compose WhatsApp Message
+            const message = `Hello Dr. Mustafa's Clinic,\n\nI would like to book an appointment.\n\n*Patient Name:* ${name}\n*Phone:* ${phone}\n*Service:* ${service}\n*Preferred Date:* ${date}`;
+
+            // Create WhatsApp Link
+            const whatsappUrl = `https://wa.me/${clinicWhatsApp}?text=${encodeURIComponent(message)}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
         });
-    </script>
+    }
+</script>
+      
 </body>
 </html>
