@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Mustafa's Clinic (DMC) | Healthcare Excellence in I-8 Islamabad</title>
     
+    <!-- App Icon / Favicon -->
+    <link rel="icon" type="image/jpeg" href="3.29.jpg">
+    <link rel="apple-touch-icon" href="3.29.jpg">
+
     <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -146,13 +150,13 @@
             width: 100%;
             z-index: 1000;
             transition: var(--transition);
-            padding: 20px 0;
+            padding: 15px 0;
         }
 
         header.scrolled {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 12px 0;
+            padding: 10px 0;
             box-shadow: var(--shadow-sm);
         }
 
@@ -163,16 +167,14 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--dark);
             display: flex;
             align-items: center;
-            gap: 8px;
         }
 
-        .logo span {
-            color: var(--primary);
+        .logo img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -607,6 +609,14 @@
             max-width: 320px;
         }
 
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
         .footer-links h4 {
             font-size: 1.1rem;
             margin-bottom: 20px;
@@ -727,7 +737,7 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    DMC<span>.</span>
+                    <img src="3.29.jpg" alt="Dr Mustafa's Clinic (DMC) Logo">
                 </a>
 
                 <ul class="nav-links">
@@ -1009,7 +1019,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo" style="color: var(--white);">DMC<span>.</span></a>
+                    <a href="#" class="footer-logo">
+                        <img src="3.29.jpg" alt="Dr Mustafa's Clinic (DMC) Logo">
+                    </a>
                     <p>Dr. Mustafa's Clinic (DMC) is dedicated to delivering high-quality, modern, and compassionate medical care in Islamabad.</p>
                 </div>
 
