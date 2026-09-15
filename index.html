@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Mustafa's Clinic (DMC) | Medical Services Islamabad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-hover: #115e59;
+            --secondary: #2dd4bf;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .logo span { color: var(--secondary); }
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
+
+        .btn-call {
+            background-color: var(--primary);
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .hero {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #ccfbf1 100%);
+            text-align: center;
+        }
+
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--white);
+            padding: 8px 16px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 20px; }
+        .hero p { font-size: 18px; color: var(--gray); margin-bottom: 30px; }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+        .section-title { text-align: center; font-size: 32px; color: var(--dark); margin-bottom: 40px; }
+
+        /* Booking Form */
+        .booking-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-submit:hover { background: var(--primary-hover); }
+
+        /* About Section */
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .info-card { background: var(--white); padding: 30px; border-radius: 16px; box-shadow: var(--shadow); text-align: center; }
+        .icon-wrapper { font-size: 32px; margin-bottom: 15px; }
+
+        footer { background: var(--dark); color: #94a3b8; text-align: center; padding: 30px; margin-top: 80px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">DMC<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#booking">Book Appointment</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="tel:+923439475130" class="btn-call">Call Now</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="rating-badge">★ 4.9 Rated Healthcare</div>
+            <h1>Dr. Mustafa's Clinic I-8 (DMC)</h1>
+            <p>Comprehensive medical care and expert consultation in Islamabad.</p>
+            <a href="#booking" class="btn-primary">Book Appointment Online</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Our Clinic</h2>
+        <div class="about-grid">
+            <div class="info-card">
+                <div class="icon-wrapper">👨‍⚕️</div>
+                <h3>Expert Care</h3>
+                <p>Dr. Mustafa provides personalized medical treatment focused on long-term recovery.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon-wrapper">🏥</div>
+                <h3>Modern Facility</h3>
+                <p>Equipped with hygienic and patient-friendly environment in Sector I-8.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon-wrapper">⭐</div>
+                <h3>High Satisfaction</h3>
+                <p>Consistently rated 4.9/5 by patients across Islamabad and Rawalpindi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Booking Form -->
+    <section id="booking" class="section">
+        <h2 class="section-title">Book an Appointment</h2>
+        <div class="booking-card">
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="patientName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="patientPhone" placeholder="e.g. 0343 9475130" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Message / Problem Details</label>
+                    <textarea id="patientMessage" rows="3" placeholder="Describe your health concern..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Submit Booking</button>
+            </form>
+            <p id="formResponse" style="margin-top: 15px; font-weight: bold; text-align: center;"></p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact & Location</h2>
+        <div class="about-grid">
+            <div class="info-card">
+                <div class="icon-wrapper">📍</div>
+                <h3>Address</h3>
+                <p>Sector I-8, Islamabad, Pakistan</p>
+            </div>
+            <div class="info-card">
+                <div class="icon-wrapper">📞</div>
+                <h3>Phone</h3>
+                <p><a href="tel:+923439475130" style="color:var(--primary); text-decoration:none;">+92 343 9475130</a></p>
+            </div>
+            <div class="info-card">
+                <div class="icon-wrapper">⏰</div>
+                <h3>Timings</h3>
+                <p>Monday - Saturday: 09:00 AM - 09:00 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dr. Mustafa's Clinic (DMC). All Rights Reserved.</p>
+    </footer>
+
+    <script>
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('patientName').value;
+        const phone = document.getElementById('patientPhone').value;
+        const date = document.getElementById('appointmentDate').value;
+        const msg = document.getElementById('patientMessage').value;
+
+        // Aapka WhatsApp Number
+        const myPhone = "923439475130"; 
+        
+        // WhatsApp Message Text
+        const text = `*New Appointment Request (DMC)*%0A%0A` +
+                     `*Name:* ${encodeURIComponent(name)}%0A` +
+                     `*Patient Phone:* ${encodeURIComponent(phone)}%0A` +
+                     `*Date:* ${encodeURIComponent(date)}%0A` +
+                     `*Details:* ${encodeURIComponent(msg)}`;
+
+        // Direct WhatsApp Open Karega
+        window.open(`https://wa.me/${myPhone}?text=${text}`, '_blank');
+        
+        // Screen Par Confirmation Message
+        const responseEl = document.getElementById('formResponse');
+        responseEl.style.color = "green";
+        responseEl.innerText = "✓ Redirecting to WhatsApp...";
+    });
+</script>
+
+         
+</body>
+</html>
