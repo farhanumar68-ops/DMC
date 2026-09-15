@@ -1074,48 +1074,59 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Sticky Header
-        const header = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+    // Sticky Header Scroll
+    const header = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
+    // Mobile Navigation Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    if (menuToggle) {
         menuToggle.addEventListener('click', () => {
             mobileNav.classList.toggle('active');
         });
+    }
 
-        // Form Submission to WhatsApp
-        const appointmentForm = document.getElementById('appointmentForm');
-        if (appointmentForm) {
-            appointmentForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+    // Connect HTML Form to Cloudflare Worker API & WhatsApp
+    const appointmentForm = document.getElementById('appointmentForm');
+    if (appointmentForm) {
+        appointmentForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-                // Fetch input values
-                const name = document.getElementById('fullName').value;
-                const phone = document.getElementById('phone').value;
-                const service = document.getElementById('serviceSelect').value;
-                const date = document.getElementById('appointmentDate').value;
+            // 1. Get input values
+            const name = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const service = document.getElementById('serviceSelect').value;
+            const date = document.getElementById('appointmentDate').value;
 
-                // Target WhatsApp Number
-                const clinicWhatsApp = "923439475130";
+            const payload = { name, phone, service, date };
 
-                // Compose Formatted Message
-                const message = `Hello Dr. Mustafa's Clinic,\n\nI would like to book an appointment.\n\n*Patient Name:* ${name}\n*Phone:* ${phone}\n*Service:* ${service}\n*Preferred Date:* ${date}`;
+            // 2. Send Data to your Cloudflare Worker Backend (/api/book-appointment)
+            try {
+                await fetch('/api/book-appointment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            } catch (error) {
+                console.error("Backend logging error:", error);
+            }
 
-                // Create Direct WhatsApp Link
-                const whatsappUrl = `https://wa.me/${clinicWhatsApp}?text=${encodeURIComponent(message)}`;
+            // 3. Auto-Redirect Patient to WhatsApp with details
+            const textMessage = `*NEW APPOINTMENT BOOKING*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Service:* ${encodeURIComponent(service)}%0A*Preferred Date:* ${encodeURIComponent(date)}`;
+            
+            const waUrl = `https://api.whatsapp.com/send?phone=923439475130&text=${textMessage}`;
 
-                // Redirect User
-                window.open(whatsappUrl, '_blank');
-            });
-        }
-    </script>
+            // Open WhatsApp directly
+            window.location.href = waUrl;
+        });
+    }
+</script>
 </body>
 </html>
