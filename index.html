@@ -68,6 +68,7 @@
             width: 90%;
             max-width: 1240px;
             margin: 0 auto;
+            position: relative;
         }
 
         .section-padding {
@@ -204,6 +205,32 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--dark);
+        }
+
+        /* --- FIXED MOBILE NAVIGATION CSS --- */
+        .mobile-nav {
+            display: none; /* Desktop par hidden rahe ga */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            border-top: 1px solid #E2E8F0;
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            display: block; /* Mobile toggle hone par show ho ga */
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 12px 0;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 1px solid var(--gray-light);
         }
 
         /* --- HERO SECTION --- */
@@ -679,7 +706,7 @@
             transform: scale(1.1);
         }
 
-        /* --- RESPONSIVE & MOBILE MENU --- */
+        /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 992px) {
             .hero-container, .about-grid, .booking-grid, .contact-grid {
                 grid-template-columns: 1fr;
@@ -701,30 +728,6 @@
 
             .menu-toggle {
                 display: block;
-            }
-
-            .mobile-nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                padding: 20px;
-                box-shadow: var(--shadow-md);
-                border-top: 1px solid #E2E8F0;
-            }
-
-            .mobile-nav.active {
-                display: block;
-            }
-
-            .mobile-nav a {
-                display: block;
-                padding: 12px 0;
-                font-weight: 600;
-                color: var(--dark);
-                border-bottom: 1px solid var(--gray-light);
             }
 
             .services-grid, .reviews-grid, .footer-grid, .highlight-grid {
@@ -760,7 +763,9 @@
                     <a href="#booking" class="btn btn-primary">Book Appointment</a>
                 </div>
 
-               
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </nav>
 
             <!-- MOBILE NAVIGATION CONTAINER -->
